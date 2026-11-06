@@ -1,0 +1,21 @@
+# Virtual environments and caches
+.venv/
+venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Data is not versioned (GitHub rejects files > 100 MB). See README in each data folder.
+02_Raw_Data/*
+!02_Raw_Data/README.md
+03_Clean_Data/*
+!03_Clean_Data/README.md
+
+# Local analysis databases
+*.duckdb
+
+# OS / Office temp files
+.DS_Store
+Thumbs.db
+~$*.xlsx
+~$*.docx
