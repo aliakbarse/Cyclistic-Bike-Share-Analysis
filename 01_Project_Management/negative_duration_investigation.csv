@@ -1,0 +1,30 @@
+ride_id,rideable_type,started_at,ended_at,start_station_name,start_station_id,end_station_name,end_station_id,member_casual,ride_length_minutes,source_file
+5740B9AA6176D32C,classic_bike,2025-11-02 01:59:56.801,2025-11-02 01:05:09.113,Western Blvd & 48th Pl,CHI00735,Campbell Ave & 51st St,CHI01918,member,-54.7948,202511-divvy-tripdata.csv
+ED8C9D500F271C3D,classic_bike,2025-11-02 01:57:24.553,2025-11-02 01:02:44.165,Racine Ave & Randolph St,CHI00320,Ogden Ave & Chicago Ave,CHI00275,member,-54.67313333333333,202511-divvy-tripdata.csv
+222A5E8650C55311,electric_bike,2025-11-02 01:55:51.266,2025-11-02 01:01:50.026,W Armitage Ave & N Sheffield Ave,CHI00836,,,member,-54.02066666666666,202511-divvy-tripdata.csv
+985A3462DAACFFCF,classic_bike,2025-11-02 01:59:07.835,2025-11-02 01:05:19.214,Seminary Ave & Belden Ave,CHI02106,Sedgwick St & Webster Ave,CHI00487,member,-53.81035,202511-divvy-tripdata.csv
+E37AEB3E9CE2343E,electric_bike,2025-11-02 01:56:26.465,2025-11-02 01:03:08.183,Broadway & Roscoe Ave,CHI02153,,,member,-53.304700000000004,202511-divvy-tripdata.csv
+4A659F1BB40EDBF7,electric_bike,2025-11-02 01:55:38.177,2025-11-02 01:04:35.315,Keystone Ave & Montrose Ave,CHI00643,Lynch Ave & Elston Ave,CHI02000,casual,-51.0477,202511-divvy-tripdata.csv
+434E3D11ABA96891,electric_bike,2025-11-02 01:59:40.156,2025-11-02 01:08:51.303,Public Rack - Olmstead Ave & Oliphant Ave,CHI01613,Milwaukee Ave & Highland Ave,CHI02015,casual,-50.81421666666667,202511-divvy-tripdata.csv
+4976DE4C5F1AA516,electric_bike,2025-11-02 01:56:44.152,2025-11-02 01:06:51.164,,,Sedgwick St & Huron St,CHI00241,member,-49.88313333333333,202511-divvy-tripdata.csv
+83995E751A0DB5D5,electric_bike,2025-11-02 01:50:50.530,2025-11-02 01:01:15.026,Paulina St & Division St,CHI00244,Kedzie Ave & Milwaukee Ave,CHI00378,member,-49.59173333333333,202511-divvy-tripdata.csv
+093B3FC8E465DA4A,electric_bike,2025-11-02 01:52:58.523,2025-11-02 01:04:31.464,,,Wabash Ave & Roosevelt Rd,CHI00524,member,-48.45098333333333,202511-divvy-tripdata.csv
+01C21B340CC1EEDA,classic_bike,2025-11-02 01:50:43.657,2025-11-02 01:03:13.912,California Ave & Milwaukee Ave,CHI00307,Paulina Ave & North Ave,CHI00258,casual,-47.49575,202511-divvy-tripdata.csv
+12E0A9A586A45DE3,electric_bike,2025-11-02 01:49:41.788,2025-11-02 01:02:30.041,Damen Ave & Thomas St (Augusta Blvd),CHI00296,,,member,-47.19578333333333,202511-divvy-tripdata.csv
+9288498F5630E3AD,electric_bike,2025-11-02 01:49:48.360,2025-11-02 01:02:40.976,Damen Ave & Thomas St (Augusta Blvd),CHI00296,,,casual,-47.123066666666666,202511-divvy-tripdata.csv
+DA5386E5759667EC,electric_bike,2025-11-02 01:51:31.704,2025-11-02 01:05:47.339,Racine Ave & Belmont Ave,CHI00411,Dearborn St & Division St,CHI02125,member,-45.73941666666666,202511-divvy-tripdata.csv
+F87FA50B8D40FA97,electric_bike,2025-11-02 01:54:25.185,2025-11-02 01:10:50.859,,,Michigan Ave & Madison St,CHI01915,casual,-43.5721,202511-divvy-tripdata.csv
+A66DEC9146C488BF,electric_bike,2025-11-02 01:50:17.559,2025-11-02 01:07:46.445,,,Wilton Ave & Addison St,CHI02055,member,-42.518566666666665,202511-divvy-tripdata.csv
+3301C8D1FF15E4CE,electric_bike,2025-11-02 01:58:08.316,2025-11-02 01:16:43.649,Manor Ave & Leland Ave,CHI00633,Damen Ave & Division St,CHI00318,member,-41.411116666666665,202511-divvy-tripdata.csv
+5F7692C857079901,electric_bike,2025-11-02 01:54:17.357,2025-11-02 01:13:50.718,Clark St & Leland Ave,CHI00461,,,member,-40.443983333333335,202511-divvy-tripdata.csv
+5D010AFEA6850513,electric_bike,2025-11-02 01:52:37.475,2025-11-02 01:13:24.728,Pine Grove Ave & Wellington Ave,CHI02158,Wilton Ave & Addison St,CHI02055,member,-39.21245,202511-divvy-tripdata.csv
+4446901DBDE0531B,classic_bike,2025-11-02 01:45:25.021,2025-11-02 01:08:08.134,Clark St & Chicago Ave,CHI00351,Clark St & Wrightwood Ave,CHI00287,casual,-37.28145,202511-divvy-tripdata.csv
+D1E5316AD88ECD45,classic_bike,2025-11-02 01:50:39.702,2025-11-02 01:14:04.164,Clark St & Ida B Wells Dr,CHI00216,Paulina St & Division St,CHI00244,casual,-36.5923,202511-divvy-tripdata.csv
+19386939ECD81B33,electric_bike,2025-11-02 01:55:34.399,2025-11-02 01:21:31.873,Broadway & Sheridan Rd,CHI00476,,,member,-34.0421,202511-divvy-tripdata.csv
+595AED6AB9A66E8F,classic_bike,2025-11-02 01:51:37.195,2025-11-02 01:18:08.912,Michigan Ave & Oak St,CHI00252,Sedgwick St & Webster Ave,CHI00487,member,-33.47138333333333,202511-divvy-tripdata.csv
+120BC0544C3B92E4,classic_bike,2025-11-02 01:41:32.055,2025-11-02 01:08:10.359,Clark St & Chicago Ave,CHI00351,Clark St & Wrightwood Ave,CHI00287,casual,-33.361599999999996,202511-divvy-tripdata.csv
+C89AFBD919D615FD,classic_bike,2025-11-02 01:51:49.264,2025-11-02 01:18:50.977,Sedgwick St & Huron St,CHI00241,Southport Ave & Irving Park Rd,CHI00481,member,-32.97145,202511-divvy-tripdata.csv
+8BF21DA40F846779,electric_bike,2025-11-02 01:57:17.456,2025-11-02 01:26:23.644,Campbell Ave & North Ave,CHI00341,Campbell Ave & North Ave,CHI00341,member,-30.896866666666664,202511-divvy-tripdata.csv
+3AF2F8908C9386F8,classic_bike,2025-11-02 01:57:57.512,2025-11-02 01:33:52.225,State St & Chicago Ave,CHI01772,Ravenswood Ave & Berteau Ave,CHI00471,member,-24.088116666666668,202511-divvy-tripdata.csv
+A61B896123C0D647,classic_bike,2025-11-02 01:28:03.715,2025-11-02 01:05:17.029,Sacramento Ave & Lyndale St,CHI02126,Rush St & Cedar St,CHI00537,casual,-22.7781,202511-divvy-tripdata.csv
+083534D28DA37F72,classic_bike,2025-11-02 01:17:57.001,2025-11-02 01:05:27.752,Clark St & Grace St,CHI00301,Grace St & Central Ave,CHI01799,member,-12.487483333333333,202511-divvy-tripdata.csv
