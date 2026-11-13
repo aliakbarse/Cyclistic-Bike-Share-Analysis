@@ -36,3 +36,9 @@ DST_FALLBACK_DATE = date(2025, 11, 2)
 DST_CORRECTION_MINUTES = 60
 
 CHUNK_SIZE = 100_000
+
+# PostgreSQL connection. Override with the CYCLISTIC_DSN environment
+# variable. The password is read from PGPASSWORD or your pgpass file, so
+# it never appears in the code or in git.
+POSTGRES_DSN_DEFAULT = "host=localhost port=5432 dbname=cyclistic user=postgres"
+SCHEMA_FILE = PROJECT_ROOT / "sql" / "00_schema.sql"
