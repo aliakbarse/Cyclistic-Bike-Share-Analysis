@@ -50,11 +50,10 @@ Charts made with Python: [`docs/images/`](docs/images/)
 
 ```
 Cyclistic-Bike-Share-Analysis/
-├── src/cyclistic/           Pipeline: config, clean, validate, run_pipeline
-├── tests/                   pytest tests for cleaning and validation
-├── sql/                     PostgreSQL scripts: 01 validation, 02 exploration, 03 analysis, 04 final queries
+├── src/cyclistic/           Pipeline: config, clean, validate, load_to_postgres, analysis, plot_charts, run_pipeline
+├── tests/                   pytest tests: cleaning, validation, analysis definitions, charts, SQL reconciliation
+├── sql/                     PostgreSQL scripts: 00 schema, 01 validation, 02 exploration, 03 analysis, 04 final queries
 ├── excel/                   data_dictionary, exploratory_analysis, summary_tables
-├── notebooks/               cyclistic_analysis.ipynb (to be replaced by scripts in phase 2)
 ├── exploration/             One-off checks used to understand the data (scripts 00-15)
 ├── docs/                    findings.md, images/, project_management/ (Ask, Prepare and Process notes)
 ├── powerbi/                 Power BI handoff note (dashboard in progress)
@@ -77,19 +76,21 @@ python -m pip install -e ".[dev]"
 ```
 
 1. Download the 12 monthly files and extract them as described in [`02_Raw_Data/README.md`](02_Raw_Data/README.md).
-2. Build and check the clean table (about 2 minutes): `python -m cyclistic.run_pipeline`
+2. Build and check the clean table and draw the charts (a few minutes): `python -m cyclistic.run_pipeline`
 3. Run the tests: `python -m pytest -v`
-4. Optional, also test the full clean file: `$env:CYCLISTIC_FULL_TESTS = "1"; python -m pytest -v`
+4. Optional, load PostgreSQL and run the full-data tests. Create a database called `cyclistic`, set `PGPASSWORD`, then:
+   `python -m cyclistic.load_to_postgres`
+   `$env:CYCLISTIC_FULL_TESTS = "1"; python -m pytest -v`
 
 Some scripts in `exploration/` still contain absolute Windows paths; change them to your own before running them.
 
 ## SQL layer
 
-The scripts in `sql/` are written for PostgreSQL. `01_data_validation.sql` and `02_exploration.sql` check the data, `03_analysis.sql` holds the deeper analysis and `04_final_queries.sql` holds the queries behind the findings (KPIs, weekday-by-hour heatmap, seasons, commute-like rides, round trips and station rankings). A schema and load script that builds the tables in PostgreSQL from the clean file is planned for phase 2.
+The scripts in `sql/` are written for PostgreSQL. `01_data_validation.sql` and `02_exploration.sql` check the data, `03_analysis.sql` holds the deeper analysis and `04_final_queries.sql` holds the queries behind the findings (KPIs, weekday-by-hour heatmap, seasons, commute-like rides, round trips and station rankings). `00_schema.sql` creates the table (with `ride_id` as the primary key and `CHECK` rules for the categories and durations), and `python -m cyclistic.load_to_postgres` fills it with `COPY` and checks the row count. A test compares the headline numbers from PostgreSQL with the pandas results.
 
 ## Next steps
 
-- Phase 2: a PostgreSQL schema and load script, analysis as Python modules with tests, replacing the notebook.
+- Phase 2 (done): PostgreSQL schema and load script, analysis and charts as tested Python modules, SQL and pandas reconciled in a test.
 - Phase 3: Power BI dashboard with a PDF export and screenshots.
 
 ## Data licence and credit
