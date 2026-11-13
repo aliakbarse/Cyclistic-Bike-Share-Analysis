@@ -50,7 +50,7 @@ Do not delete the original records automatically. Flag the affected records and 
 
 **Issue:**
 
-5,426 rides (0.0887%) have missing `end_lat` and `end_lng` values.
+5,426 rides (0.0887%) in the raw files have missing `end_lat` and `end_lng` values. After the 35 duplicates are removed, 5,420 remain.
 
 **Potential impact:**
 
@@ -75,6 +75,20 @@ The available data can reveal descriptive usage patterns, but it cannot by itsel
 **Planned handling:**
 
 Limit conclusions to patterns supported by the available data. Avoid causal claims unless additional data is introduced and analyzed.
+
+### 6. No Rider IDs, Prices or Revenue
+
+**Issue:**
+
+The trip files record rides, not riders. They have no rider ID, no ticket or membership price and no revenue field.
+
+**Potential impact:**
+
+The number of rides per person, repeat use and the time from a first casual ride to a membership cannot be measured. Membership revenue, price break-even and conversion rate cannot be calculated. Counts are of rides, not of riders.
+
+**Planned handling:**
+
+State clearly that findings describe rides, not people. Recommend testing any offer with Cyclistic's own rider-level data, for example a split test against a control group.
 
 ## Overall Data Limitations
 

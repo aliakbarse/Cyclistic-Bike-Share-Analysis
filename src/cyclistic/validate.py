@@ -17,6 +17,7 @@ from collections.abc import Iterable
 from pathlib import Path
 
 import pandas as pd
+from tqdm import tqdm
 
 from cyclistic import config
 
@@ -98,7 +99,9 @@ def validate_file(path: Path, expected_rows: int | None = None) -> dict:
         parse_dates=["started_at", "ended_at"],
         chunksize=config.CHUNK_SIZE,
     )
-    return validate_chunks(chunks, expected_rows)
+    return validate_chunks(
+        tqdm(chunks, desc="Validating", unit="chunk"), expected_rows
+    )
 
 
 def print_report(result: dict) -> None:

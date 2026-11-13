@@ -16,6 +16,7 @@ Run with: python -m cyclistic.clean
 from pathlib import Path
 
 import pandas as pd
+from tqdm import tqdm
 
 from cyclistic import config
 
@@ -74,8 +75,8 @@ def clean_all(raw_dir: Path, duplicate_file: Path) -> pd.DataFrame:
     print(f"Confirmed duplicate ride IDs: {len(duplicate_ids):,}")
 
     parts = []
-    for file in files:
-        print(f"Processing: {file.name}")
+    for file in tqdm(files, desc="Cleaning files", unit="file"):
+        tqdm.write(f"Processing: {file.name}")
         raw = pd.read_csv(file)
         parts.append(clean_month(raw, file.name, duplicate_ids))
     return pd.concat(parts, ignore_index=True)

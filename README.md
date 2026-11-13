@@ -1,109 +1,105 @@
 # Cyclistic Bike-Share Analysis
 
-## Executive Summary
+How do annual members and casual riders use Cyclistic bikes differently, and where could Cyclistic win more members? This project analyses 6.1 million Divvy bike-share rides (September 2025 - August 2026) with Python (pandas), SQL (PostgreSQL), Excel and Power BI. It is the capstone of the Google Data Analytics Certificate.
 
-Cyclistic wants more annual members. This project analyses 6.1 million bike-share rides (September 2025 - August 2026) to find how casual riders differ from annual members and where casual riders look most like members.
+## In plain terms
 
-Casual riders are seasonal and weekend-leaning; members are year-round weekday commuters. The groups overlap more than they differ: about 28% of casual rides already follow the member pattern (weekday, commute hours, under 30 minutes), and casual riding grows sharply every spring.
+Cyclistic is a bike-share company. Annual members are worth more to it than people who pay per ride ("casual riders"), so it wants to turn casual riders into members. The data shows every ride: when it started and ended, the bike type, the stations and whether the rider was a member or casual. It does not show who the rider is.
 
-## Business Problem
+The result in one paragraph: members ride mostly on weekdays with peaks in the morning and late afternoon, and they ride all year. Casual riders ride more at weekends and in summer, ride a little longer, and start more often at lakefront and tourist stations. The groups overlap, though: about 28% of casual rides look like a typical member ride (weekday, commute hours, under 30 minutes). These patterns are associated with rider type. The data cannot say why people ride, and it cannot say who would buy a membership.
 
-Increase the number of annual memberships by converting more casual riders into members.
+## Key findings
 
-**Business task:** analyse how annual members and casual riders use Cyclistic bikes differently, to identify opportunities for conversion.
+1. **Different rhythms.** 20% of member rides start between 06:00 and 09:59, against 11% for casual rides. 37% of casual rides fall on weekends, against 23% for members.
+2. **Casual riding is much more seasonal.** 47% of casual rides happen in June-August (members: 38%). In this year of data, the casual share of all rides runs from 18% in January to 41% in July.
+3. **Casual rides run longer.** The median casual ride is 10.9 minutes against 8.6 for members (1.27 times). The gap in the mean is larger (20.7 against 12.4 minutes, 1.67 times) because a few very long rides pull it up; after removing rides under 1 minute and over 3 hours it is 1.46 times.
+4. **Casual riders start at lakefront and tourist stations, but are spread out.** They are the majority at Shedd Aquarium (82% of rides) and Navy Pier (76%), yet the ten busiest casual stations hold only about 10% of casual rides.
+5. **Bike type does not separate the groups.** The electric-bike share is 74% for casual riders and 68% for members.
 
-**Key questions**
-1. How do annual members and casual riders use Cyclistic bikes differently?
-2. Why would casual riders buy annual memberships?
-3. How can Cyclistic use digital media to influence casual riders to become members?
+## What this means for Cyclistic
 
-## Key Findings
+1. **Start with commute-like casual riders.** About 602,000 casual rides (28% of casual rides) are weekday, commute-window rides under 30 minutes, the closest match to member behaviour. "Commute-like" describes timing and length; the data has no trip purpose.
+2. **Plan campaigns for April to June.** In this year, casual rides rose 86% from April to May (members: 29%), so the pool of casual riders grows fastest in those months. One year of data cannot show whether every year looks the same.
+3. **Lead with in-app and email messages; use stations as support.** The 15 busiest casual stations hold only about 12% of casual rides.
+4. **Test before scaling.** Use Cyclistic's own rider-level data to measure ride frequency and the price break-even, and split-test an offer against a control group.
 
-1. **Different rhythms.** Members have a sharp weekday morning peak (20% of rides start 06:00-09:59 vs 11% for casual); 37% of casual rides fall on weekends vs 23% for members.
-2. **Casual riding is far more seasonal.** 47% of casual rides happen in June-August (members: 38%). Casual share of all rides ranges from 18% in January to 41% in July.
-3. **Casual rides run longer.** Median 10.9 min vs 8.6 min for members (1.27x). The gap in the mean is larger (1.67x) because a few very long rides inflate it; it is 1.46x after trimming rides under 1 minute and over 3 hours.
-4. **Casual riders ride from lakefront and tourist stations, but are dispersed.** They are the majority at stations such as Shedd Aquarium (82%) and Navy Pier (76%), yet the ten busiest casual stations hold only about 10% of casual rides.
-5. **Bike type is not the differentiator.** Electric-bike share is 74% for casual riders vs 68% for members.
+Full detail: [`docs/findings.md`](docs/findings.md)
 
-## Recommendations
+## Power BI dashboard
 
-1. **Prioritise commute-like casual riders** (about 602,000 rides, 28% of casual rides) for membership messaging; they are the closest behavioural match to members.
-2. **Run campaigns April-June.** Casual rides rise 86% from April to May (members: 29%), so the reachable pool grows fastest then.
-3. **Lead with in-app and email; use stations as a supporting channel.** The top 15 casual stations hold only about 12% of casual rides.
-4. **Test before scaling.** Use Cyclistic's rider-level data to measure ride frequency and price break-even, and split-test an offer against a control group.
+*In progress (phase 3). The dashboard file will be in `powerbi/`, with a PDF export and screenshots in `docs/images/`.*
 
-Full detail: [`09_Reports/Cyclistic_Findings_Report.md`](09_Reports/Cyclistic_Findings_Report.md)
-
-## Data
-
-Cyclistic historical trip data (Divvy), provided for the Google Data Analytics Capstone case study.
-
-- 12 monthly files, September 2025 - August 2026
-- 6,115,982 raw records, 13 columns; 6,115,947 after cleaning (35 cross-file duplicates removed)
-- 29 negative durations at the 2 Nov 2025 daylight-saving change flagged and corrected
-- Raw files are never modified; all cleaning is scripted
-
-## Methodology
-
-Ask → Prepare → Process → Analyze → Share → Act
-
-| Phase | Where |
-|---|---|
-| Ask | `01_Project_Management/01_Ask.md` |
-| Prepare | `01_Project_Management/02-06_*.md`, `06_Python/00-15_*.py` |
-| Process | `01_Project_Management/07_Process_Cleaning_Plan.md`, `06_Python/16-17_*.py` |
-| Analyze | `05_SQL/`, `06_Python/cyclistic_analysis.ipynb`, `04_Excel/` |
-| Share | `09_Reports/`, `07_PowerBI/` (dashboard in progress) |
-
-**Verification:** headline metrics were computed independently in SQL and pandas and reconcile exactly (see the notebook, section 2).
-
-## Tools
-
-Excel | PostgreSQL | Power BI | Python
-
-## Dashboard
-
-*Power BI dashboard in progress. Screenshots will be added to `08_Visualizations/`.*
-
-Analysis charts (Python): `08_Visualizations/analysis_charts/`
-
-## Project Structure
-
-```
-01_Cyclistic_Bike_Share/
-├── 01_Project_Management/   Ask, data inventory, dictionary, ROCCC, limitations, cleaning plan
-├── 02_Raw_Data/             Original monthly zips (unmodified)
-├── 03_Clean_Data/           cyclistic_clean.csv (output of 16_clean_cyclistic_data.py)
-├── 04_Excel/                data_dictionary, exploratory_analysis, summary_tables
-├── 05_SQL/                  01 validation, 02 exploration, 03 deep analysis, 04 final queries
-├── 06_Python/               00-17 checks and cleaning scripts, cyclistic_analysis.ipynb
-├── 07_PowerBI/              Power BI report
-├── 08_Visualizations/       Dashboard exports and analysis_charts/
-└── 09_Reports/              Cyclistic_Findings_Report.md
-```
+Charts made with Python: [`docs/images/`](docs/images/)
 
 ## Limitations
 
-- **Rides are not riders.** No rider IDs, so frequency per person and conversion cannot be measured.
-- **No prices, revenue or trip purpose** in the data; conversion rate and membership revenue are out of reach with this dataset.
-- **Station data is incomplete:** about 30% of electric-bike rides have no start station.
-- **One year of data;** seasonal patterns come from a single 12-month window.
-- **Descriptive analysis only:** patterns show association, not cause.
+- **Rides are not riders.** There are no rider IDs, so rides per person, repeat use and conversion cannot be measured.
+- **No prices, revenue or trip purpose.** Membership revenue and conversion rate cannot be calculated from this dataset.
+- **Station data is incomplete.** 1,285,400 rides (21% of all rides) have no start station. All of them are electric-bike rides, which is 30% of electric-bike rides.
+- **One year of data.** Seasonal patterns come from a single 12-month window.
+- **Descriptive analysis only.** The patterns show association, not cause.
+
+## Data and method
+
+- **Data:** 12 monthly Divvy trip files, September 2025 - August 2026, 13 columns, 6,115,982 raw rows.
+- **Cleaning:** 35 exact duplicate rides that appear in two monthly files were removed (6,115,947 rows remain). 29 rides with a negative duration at the 2 November 2025 daylight-saving change were flagged and corrected by one hour. Rides with missing stations or end coordinates were kept and left out only of the analyses that need them. The raw files are never modified. Rules: [`docs/project_management/07_Process_Cleaning_Plan.md`](docs/project_management/07_Process_Cleaning_Plan.md).
+- **Checks:** a validation step and `pytest` tests confirm the row count, no duplicate ride IDs, valid categories and no negative durations. The headline numbers were computed independently in SQL and pandas and agree exactly.
+- **Method:** Ask, Prepare, Process, Analyze, Share, Act.
+
+## Repository structure
+
+```
+Cyclistic-Bike-Share-Analysis/
+├── src/cyclistic/           Pipeline: config, clean, validate, run_pipeline
+├── tests/                   pytest tests for cleaning and validation
+├── sql/                     PostgreSQL scripts: 01 validation, 02 exploration, 03 analysis, 04 final queries
+├── excel/                   data_dictionary, exploratory_analysis, summary_tables
+├── notebooks/               cyclistic_analysis.ipynb (to be replaced by scripts in phase 2)
+├── exploration/             One-off checks used to understand the data (scripts 00-15)
+├── docs/                    findings.md, images/, project_management/ (Ask, Prepare and Process notes)
+├── powerbi/                 Power BI handoff note (dashboard in progress)
+├── 02_Raw_Data/             Download instructions (data not stored here)
+├── 03_Clean_Data/           Output folder for cyclistic_clean.csv (not stored here)
+├── pyproject.toml
+└── LICENSE
+```
+
+## Run locally
+
+Requirements: Python 3.10 or newer, and about 3 GB of free disk space.
+
+```powershell
+git clone https://github.com/aliakbarse/Cyclistic-Bike-Share-Analysis.git
+cd Cyclistic-Bike-Share-Analysis
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+python -m pip install -e ".[dev]"
+```
+
+1. Download the 12 monthly files and extract them as described in [`02_Raw_Data/README.md`](02_Raw_Data/README.md).
+2. Build and check the clean table (about 2 minutes): `python -m cyclistic.run_pipeline`
+3. Run the tests: `python -m pytest -v`
+4. Optional, also test the full clean file: `$env:CYCLISTIC_FULL_TESTS = "1"; python -m pytest -v`
+
+Some scripts in `exploration/` still contain absolute Windows paths; change them to your own before running them.
+
+## SQL layer
+
+The scripts in `sql/` are written for PostgreSQL. `01_data_validation.sql` and `02_exploration.sql` check the data, `03_analysis.sql` holds the deeper analysis and `04_final_queries.sql` holds the queries behind the findings (KPIs, weekday-by-hour heatmap, seasons, commute-like rides, round trips and station rankings). A schema and load script that builds the tables in PostgreSQL from the clean file is planned for phase 2.
+
+## Next steps
+
+- Phase 2: a PostgreSQL schema and load script, analysis as Python modules with tests, replacing the notebook.
+- Phase 3: Power BI dashboard with a PDF export and screenshots.
+
+## Data licence and credit
+
+The trip data is published by Lyft Bikes and Scooters, LLC for the Divvy bike-share system in Chicago, and is used here for the Google Data Analytics capstone case study. It is subject to the Divvy data licence agreement; read it before reusing the data (see https://divvybikes.com/system-data). The raw and clean data files are not stored in this repository, and the MIT licence below does not cover them.
+
+## Code licence
+
+The code and documentation are released under the MIT licence; see [`LICENSE`](LICENSE).
 
 ## Author
 
 Ali Akbar
-
-## Reproducing this project
-
-The data files are not stored in this repository (GitHub's 100 MB file limit). To reproduce:
-
-1. Download the 12 monthly Divvy files (see [`02_Raw_Data/README.md`](02_Raw_Data/README.md)).
-2. Run the cleaning and validation scripts (see [`03_Clean_Data/README.md`](03_Clean_Data/README.md)).
-3. Run the SQL files in `05_SQL/` in PostgreSQL, then open `06_Python/cyclistic_analysis.ipynb`.
-
-Scripts `00`-`17` contain absolute Windows paths in their configuration block; change them to your own before running.
-
-## Repository history
-
-This repository was assembled from a finished local project, so the commit history is organised by phase (Ask, Prepare, Process, Analyze, Share) rather than recording the original working sessions. Commit dates reflect when it was organised.
