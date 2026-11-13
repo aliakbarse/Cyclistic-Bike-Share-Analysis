@@ -7,9 +7,9 @@ Everything up to the Power BI stage is done. This note lists what is ready and w
 | Need | Source |
 |---|---|
 | Clean ride-level table (6,115,947 rows) | `03_Clean_Data/cyclistic_clean.csv` |
-| Verified metric definitions (weekend, season, commute-like, duration buckets) | `05_SQL/04_final_queries.sql`, `06_Python/cyclistic_analysis.ipynb` |
-| Reference values to check every dashboard measure against | `04_Excel/summary_tables.xlsx` |
-| Story and recommendations | `09_Reports/Cyclistic_Findings_Report.md` |
+| Verified metric definitions (weekend, season, commute-like, duration buckets) | `sql/04_final_queries.sql`, `notebooks/cyclistic_analysis.ipynb` |
+| Reference values to check every dashboard measure against | `excel/summary_tables.xlsx` |
+| Story and recommendations | `docs/findings.md` |
 | Colour convention used in analysis charts | Member = blue `#2a78d6`, Casual = orange `#eb6834` |
 
 ## Check values for dashboard measures
@@ -32,4 +32,4 @@ If a measure does not match, the model or DAX is wrong, not the data.
 3. Page layout: overview, timing and seasonality, stations, recommendations.
 4. Whether median and percentile measures are computed in DAX or pre-computed.
 
-The four placeholder files in `08_Visualizations/` (`dashboard_overview.png`, `member_vs_casual.png`, `usage_patterns.png`, `recommendations.png`) are reserved for dashboard exports.
+Dashboard exports (`dashboard_overview.png`, `member_vs_casual.png`, `usage_patterns.png`, `recommendations.png`) and the PDF go in `docs/images/` and `powerbi/`.

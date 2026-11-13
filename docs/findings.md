@@ -11,7 +11,7 @@
 
 Cyclistic wants more annual members. This analysis compares how members and casual riders use the service, to find where casual riders look most like members and when they are most reachable.
 
-**The short answer:** casual riders are a seasonal, weekend-leaning group; members are year-round, weekday commuters. The two groups are not opposites, though. More than a quarter of casual rides already look like member rides, and casual riding grows sharply every spring.
+**The short answer:** casual riders are a seasonal, weekend-leaning group; members ride all year, mostly on weekdays with morning and late-afternoon peaks. The two groups are not opposites, though. More than a quarter of casual rides already look like member rides, and in this year of data casual riding rose sharply from April to May.
 
 | | Member | Casual |
 |---|---|---|
@@ -27,7 +27,7 @@ Cyclistic wants more annual members. This analysis compares how members and casu
 **Three things to act on**
 
 1. **Target casual riders who already ride like members.** About 602,000 casual rides (28% of casual rides) are weekday, commute-window, short rides. This is the closest behavioural match to members in the data.
-2. **Time campaigns to the spring ramp-up.** Casual rides nearly double from April (131,500) to May (245,100), and casual share of all rides climbs from 29% to 37%. Casual riding peaks in July at 358,000 rides, against 25,000 in January.
+2. **Time campaigns to the spring ramp-up seen in this year's data.** Casual rides nearly double from April (131,500) to May (245,100), and casual share of all rides climbs from 29% to 37%. Casual riding peaks in July at 358,000 rides, against 25,000 in January.
 3. **Use rider-level data Cyclistic already has to size the opportunity.** This public trip data has no rider IDs or prices, so it shows *who rides when* but cannot show *who would switch*. A pricing break-even and a test campaign are the next step.
 
 ---
@@ -43,9 +43,9 @@ Cyclistic wants more annual members. This analysis compares how members and casu
 ## 3. Data and method
 
 - **Source:** 12 monthly Divvy trip files, 6,115,982 raw records, 13 columns.
-- **Cleaning:** 35 exact cross-file duplicate rides removed; 29 negative durations at the 2 Nov 2025 daylight-saving change flagged and corrected by +60 minutes; rides with missing station or end-coordinate data kept (excluded only from station-specific analysis). Result: 6,115,947 rides. Full rules in `01_Project_Management/07_Process_Cleaning_Plan.md`.
+- **Cleaning:** 35 exact cross-file duplicate rides removed; 29 negative durations at the 2 Nov 2025 daylight-saving change flagged and corrected by +60 minutes; rides with missing station or end-coordinate data kept (excluded only from station-specific analysis). Result: 6,115,947 rides. Full rules in `docs/project_management/07_Process_Cleaning_Plan.md`.
 - **Tools:** Python (cleaning, validation, notebook), PostgreSQL-syntax SQL (analysis), Excel (summary tables), Power BI (dashboard, next).
-- **Verification:** the same headline metrics were computed independently in SQL and in pandas and agree exactly (checked in `06_Python/cyclistic_analysis.ipynb`, section 2).
+- **Verification:** the same headline metrics were computed independently in SQL and in pandas and agree exactly (checked in `notebooks/cyclistic_analysis.ipynb`, section 2).
 - **Month definition:** the dataset's file month (`LEFT(source_file, 6)`), so rides that cross a month boundary stay with their source file.
 
 ## 4. Findings
@@ -56,7 +56,7 @@ Cyclistic wants more annual members. This analysis compares how members and casu
 
 - Both groups peak at 17:00 on weekdays. The difference is the morning: 20% of member rides start between 06:00 and 09:59, versus 11% of casual rides.
 - On weekends the hourly profiles are almost identical. Casual riders differ in *how much* they ride on weekends (37% of their rides), not *when*.
-- Charts: `08_Visualizations/analysis_charts/01_hourly_profile.png`, `02_weekday_hour_heatmap.png`
+- Charts: `docs/images/01_hourly_profile.png`, `02_weekday_hour_heatmap.png`
 
 **Seasonality**
 
@@ -97,7 +97,7 @@ These are behavioural segments at the ride level. They are not people, and nothi
 Recommendations follow from the timing and location patterns above:
 
 1. **Run the campaign window April-June.** Casual volume is ramping up (April to May: +86% casual rides versus +29% for members), so the pool of reachable casual riders is growing fastest then.
-2. **Use in-app and email messages at the moments casual riders ride:** weekday afternoons (peak 17:00) and weekends, with a commuter-savings message for weekday riders.
+2. **Use in-app and email messages at the moments casual riders ride:** weekday afternoons (peak 17:00) and weekends, with a savings message for weekday riders.
 3. **Treat stations as a supporting channel, not the main one.** Geo-targeted promotion at the top lakefront stations makes sense (they are majority-casual), but even the top 15 stations hold only about 12% of casual rides. In-app and email reach far more.
 4. **Test, don't assume.** Run a split test of a membership offer on casual riders in the commute-like segment against a control group, using Cyclistic's own rider-level data.
 
@@ -121,14 +121,14 @@ Recommendations follow from the timing and location patterns above:
 
 ## 7. Next step
 
-Build the Power BI dashboard from the SQL result tables (`05_SQL/04_final_queries.sql` and `03_analysis.sql`) so stakeholders can explore the timing, season and station patterns interactively.
+Build the Power BI dashboard from the SQL result tables (`sql/04_final_queries.sql` and `sql/03_analysis.sql`) so stakeholders can explore the timing, season and station patterns interactively.
 
 ## Appendix: where things are
 
 | What | Where |
 |---|---|
-| Cleaning and validation scripts | `06_Python/16_clean_cyclistic_data.py`, `17_validate_clean_data.py` |
-| Analysis and verification notebook | `06_Python/cyclistic_analysis.ipynb` |
-| SQL | `05_SQL/01-04_*.sql` |
-| Summary tables | `04_Excel/summary_tables.xlsx` |
-| Charts | `08_Visualizations/analysis_charts/` |
+| Cleaning and validation scripts | `src/cyclistic/clean.py`, `src/cyclistic/validate.py`, `tests/` |
+| Analysis and verification notebook | `notebooks/cyclistic_analysis.ipynb` |
+| SQL | `sql/01-04_*.sql` |
+| Summary tables | `excel/summary_tables.xlsx` |
+| Charts | `docs/images/` |

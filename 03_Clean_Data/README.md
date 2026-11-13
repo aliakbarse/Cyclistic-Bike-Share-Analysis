@@ -4,5 +4,7 @@
 
 **To rebuild**
 1. Place the extracted raw CSVs in `02_Raw_Data/extracted/` (see that folder's README).
-2. In `06_Python/16_clean_cyclistic_data.py`, set `DATA_DIR`, `OUTPUT_DIR` and `DUPLICATE_FILE` to your local paths.
-3. Run `python 06_Python/16_clean_cyclistic_data.py`, then `python 06_Python/17_validate_clean_data.py`. The validator expects 6,115,947 rows, no duplicate ride IDs and no negative durations.
+2. Install the project: `python -m pip install -e ".[dev]"`
+3. Run `python -m cyclistic.run_pipeline`. It cleans the raw files, writes `cyclistic_clean.csv` here, and then validates it: 6,115,947 rows, no duplicate ride IDs and no negative durations.
+
+Paths are set in `src/cyclistic/config.py` and are relative to the repository, so nothing needs editing.

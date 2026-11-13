@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cyclistic"
+version = "0.1.0"
+description = "Analysis of how annual members and casual riders use Cyclistic (Divvy) bikes."
+requires-python = ">=3.10"
+dependencies = [
+    "pandas>=2.2",
+    "matplotlib>=3.8",
+    "tqdm>=4.66",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
