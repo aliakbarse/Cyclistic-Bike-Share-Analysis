@@ -1,6 +1,7 @@
 """Run the whole Cyclistic workflow in order.
 
-Stages: clean the raw monthly files, then validate the clean table. Each
+Stages: clean the raw monthly files, validate the clean table, then draw
+the analysis charts. Each
 stage is a module in this package with a main() function. An error or a
 failed validation stops the run.
 
@@ -13,6 +14,7 @@ import time
 STAGES = [
     "clean",
     "validate",
+    "plot_charts",
 ]
 
 

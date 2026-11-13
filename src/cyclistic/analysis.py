@@ -31,6 +31,10 @@ SEASON = {
 }
 COMMUTE_WINDOWS = ((6, 9), (16, 19))  # start hours, both ends included
 COMMUTE_MAX_MINUTES = 30
+DURATION_LABELS = ["<15 min", "15-29 min", "30-59 min", "60+ min"]
+WEEKDAY_NAMES = [
+    "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday",
+]
 
 USECOLS = [
     "ride_id", "rideable_type", "started_at", "start_station_name",
@@ -63,7 +67,14 @@ def add_analysis_fields(df: pd.DataFrame) -> pd.DataFrame:
     df["is_weekend"] = df["day_of_week"].astype(str).isin(WEEKEND_DAYS)
     df["analysis_month"] = df["source_file"].astype(str).str[:6]
     df["season"] = df["analysis_month"].str[4:6].map(SEASON)
+    df["day_type"] = np.where(df["is_weekend"], "Weekend", "Weekday")
     df["summer"] = df["season"].eq("Summer")
+    df["duration_bucket"] = pd.cut(
+        df["ride_length_minutes"],
+        [-np.inf, 15, 30, 60, np.inf],
+        labels=DURATION_LABELS,
+        right=False,
+    )
     df["electric"] = df["rideable_type"].astype(str).eq("electric_bike")
 
     in_window = np.zeros(len(df), dtype=bool)
@@ -91,3 +102,84 @@ def headline_metrics(df: pd.DataFrame) -> pd.DataFrame:
         }
     )
     return out.reindex(RIDER_ORDER)
+
+
+def _share_within(df: pd.DataFrame, group: list[str], keys: list[str]) -> pd.Series:
+    """Rides per group as a percentage of the rides in the same keys."""
+    counts = df.groupby(group, observed=True).size().rename("rides")
+    totals = counts.groupby(level=keys, observed=True).transform("sum")
+    return counts / totals * 100
+
+
+def hourly_profile(df: pd.DataFrame) -> pd.DataFrame:
+    """Share of each rider type's weekday (or weekend) rides by start hour."""
+    keys = ["member_casual", "day_type"]
+    share = _share_within(df, keys + ["hour"], keys)
+    return share.rename("share_pct").reset_index()
+
+
+def weekday_hour_heatmap(df: pd.DataFrame) -> pd.DataFrame:
+    """Share of each rider type's rides by weekday and start hour."""
+    df = df.assign(day_of_week=df["day_of_week"].astype(str))
+    share = _share_within(
+        df, ["member_casual", "day_of_week", "hour"], ["member_casual"]
+    )
+    return share.rename("share_pct").reset_index()
+
+
+def monthly_rides(df: pd.DataFrame) -> pd.DataFrame:
+    """Rides per analysis month and rider type, plus the casual share (%)."""
+    monthly = (
+        df.groupby(["analysis_month", "member_casual"], observed=True)
+        .size()
+        .unstack(fill_value=0)
+        .reindex(columns=RIDER_ORDER, fill_value=0)
+    )
+    monthly["casual_share_pct"] = (
+        monthly["casual"] / (monthly["casual"] + monthly["member"]) * 100
+    )
+    return monthly
+
+
+def duration_bucket_shares(df: pd.DataFrame) -> pd.DataFrame:
+    """Share of each rider type's rides in each duration bucket."""
+    share = _share_within(
+        df, ["member_casual", "duration_bucket"], ["member_casual"]
+    )
+    return share.rename("share_pct").reset_index()
+
+
+def top_casual_stations(df: pd.DataFrame, n: int = 10) -> pd.DataFrame:
+    """The n start stations with most casual rides and their casual share.
+
+    Rides without a start station are left out; stations are identified by
+    start_station_id and shown with their first station name.
+    """
+    stations = df[df["start_station_id"].notna()]
+    is_casual = stations["member_casual"].astype(str).eq("casual")
+    by_station = (
+        stations.assign(casual=is_casual)
+        .groupby("start_station_id", observed=True)
+        .agg(
+            name=("start_station_name", "first"),
+            casual=("casual", "sum"),
+            total=("casual", "size"),
+        )
+    )
+    by_station["casual_share_pct"] = by_station["casual"] / by_station["total"] * 100
+    return by_station.sort_values("casual", ascending=False).head(n)
+
+
+def behaviour_profile(df: pd.DataFrame) -> pd.DataFrame:
+    """Percent of each rider type's rides that are weekend, summer,
+    commute-like or electric."""
+    grouped = df.groupby("member_casual", observed=True)
+    profile = pd.DataFrame(
+        {
+            "Weekend rides": grouped["is_weekend"].mean() * 100,
+            "Summer (Jun-Aug)": grouped["summer"].mean() * 100,
+            "Commute-like weekday": grouped["commute_like"].mean() * 100,
+            "Electric bike": grouped["electric"].mean() * 100,
+        }
+    )
+    return profile.reindex(RIDER_ORDER)

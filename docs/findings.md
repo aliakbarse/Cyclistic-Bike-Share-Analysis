@@ -44,8 +44,8 @@ Cyclistic wants more annual members. This analysis compares how members and casu
 
 - **Source:** 12 monthly Divvy trip files, 6,115,982 raw records, 13 columns.
 - **Cleaning:** 35 exact cross-file duplicate rides removed; 29 negative durations at the 2 Nov 2025 daylight-saving change flagged and corrected by +60 minutes; rides with missing station or end-coordinate data kept (excluded only from station-specific analysis). Result: 6,115,947 rides. Full rules in `docs/project_management/07_Process_Cleaning_Plan.md`.
-- **Tools:** Python (cleaning, validation, notebook), PostgreSQL-syntax SQL (analysis), Excel (summary tables), Power BI (dashboard, next).
-- **Verification:** the same headline metrics were computed independently in SQL and in pandas and agree exactly (checked in `notebooks/cyclistic_analysis.ipynb`, section 2).
+- **Tools:** Python (cleaning, validation, analysis, charts), PostgreSQL-syntax SQL (analysis), Excel (summary tables), Power BI (dashboard, next).
+- **Verification:** the same headline metrics were computed independently in SQL and in pandas and agree exactly (checked by `tests/test_reconcile_sql.py`, which queries PostgreSQL and compares it with pandas).
 - **Month definition:** the dataset's file month (`LEFT(source_file, 6)`), so rides that cross a month boundary stay with their source file.
 
 ## 4. Findings
@@ -128,7 +128,7 @@ Build the Power BI dashboard from the SQL result tables (`sql/04_final_queries.s
 | What | Where |
 |---|---|
 | Cleaning and validation scripts | `src/cyclistic/clean.py`, `src/cyclistic/validate.py`, `tests/` |
-| Analysis and verification notebook | `notebooks/cyclistic_analysis.ipynb` |
+| Analysis definitions and charts | `src/cyclistic/analysis.py`, `src/cyclistic/plot_charts.py` |
 | SQL | `sql/01-04_*.sql` |
 | Summary tables | `excel/summary_tables.xlsx` |
 | Charts | `docs/images/` |

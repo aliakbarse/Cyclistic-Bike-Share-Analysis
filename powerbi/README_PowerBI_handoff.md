@@ -7,7 +7,7 @@ Everything up to the Power BI stage is done. This note lists what is ready and w
 | Need | Source |
 |---|---|
 | Clean ride-level table (6,115,947 rows) | `03_Clean_Data/cyclistic_clean.csv` |
-| Verified metric definitions (weekend, season, commute-like, duration buckets) | `sql/04_final_queries.sql`, `notebooks/cyclistic_analysis.ipynb` |
+| Verified metric definitions (weekend, season, commute-like, duration buckets) | `sql/04_final_queries.sql`, `src/cyclistic/analysis.py` |
 | Reference values to check every dashboard measure against | `excel/summary_tables.xlsx` |
 | Story and recommendations | `docs/findings.md` |
 | Colour convention used in analysis charts | Member = blue `#2a78d6`, Casual = orange `#eb6834` |
