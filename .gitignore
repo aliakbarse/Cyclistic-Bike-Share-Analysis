@@ -19,3 +19,6 @@ __pycache__/
 Thumbs.db
 ~$*.xlsx
 ~$*.docx
+
+# Package build output
+src/*.egg-info/
